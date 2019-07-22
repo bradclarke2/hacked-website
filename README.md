@@ -8,6 +8,7 @@ All the answers are to be submitted to a central area, with instructions to do t
 To run the website locally using docker got to directory then run 
 
 `docker build -t {tag-name-for-build} .`
+
 `docker run --name {name-to-call-running-container} -d -p 8080:80 -v .:/usr/share/nginx/html {tag-name-for-build}`
 
 Open the browser at localhost:8080
