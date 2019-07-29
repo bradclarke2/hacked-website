@@ -1,5 +1,8 @@
 body, html {
+    position: relative;
     height: 100%;
+    width: 100%;
+    overflow: hidden;
     background: rgb(31, 31, 31);
     font-family: 'Tesco_Reg', Arial, sans-serif;
     font-weight: normal;
@@ -29,22 +32,9 @@ body, html {
     font-style: normal;
 }
 
-#video{
-    position: absolute;
-    opacity: 0.05;
-    left: 50%;
-    top: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    -webkit-transform: translate(-50%,-50%);
-    -moz-transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
-    z-index: 0;
-}
-
 #submitButton {
-    position: relative
+    position: relative;
+    z-index: 100;
 }
 
 .navbar_container {
@@ -54,6 +44,30 @@ body, html {
     top: 0px;
     width: 100%;
     height: 50px;
+    z-index: 100;
+}
+
+.container {
+    position: relative;
+    margin: 80px;
+    background-color: #fff;
+    width: calc(50% - 160px);
+    height: calc(50% - 160px);
+    overflow: hidden;
+}
+
+.glitch-img {
+    position: absolute;
+    width : 100%;
+    height : 100%;
+    top: 0 ;
+    left : 0;
+    background-position:center;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    -webkit-background-size:cover;
+    background-size:cover;
+    opacity : 0.05;
 }
 
 .logo_bar {
@@ -64,6 +78,7 @@ body, html {
     width: 100%;
     height: 60px;
     border-bottom: 1px solid rgb(201, 201, 201);
+    z-index: 100;
 }
 
 .information_text_container {
@@ -72,6 +87,7 @@ body, html {
     left: 50%;
     width: 600px;
     transform: translate(-50%);
+    z-index: 100;
 }
 
 .button {
@@ -81,6 +97,7 @@ body, html {
     width: 200px;
     height: 45px;
     transition-duration: 0.15s;
+    z-index: 100;
 }
 
 #language_selector {
@@ -95,6 +112,7 @@ body, html {
     padding-left: 10px;
     padding-right: 10px;
     color: rgb(128, 128, 128);
+    z-index: 100;
 }
 
 #tesco_logo {
@@ -103,6 +121,7 @@ body, html {
     width: auto;
     top: 27%;
     left: 20px;
+    z-index: 100;
 }
 
 #hacked_logo {
@@ -111,6 +130,7 @@ body, html {
     width: auto;
     top: 15%;
     left: 20px;
+    z-index: 100;
 }
 
 #home_icon {
@@ -118,6 +138,7 @@ body, html {
     height: 50px;
     width: auto;
     border-right: 1px solid white;
+    z-index: 100;
 }
 
 #title {
@@ -126,18 +147,20 @@ body, html {
     font-style: normal;
     color: white;
     font-size: 25px;
+    z-index: 100;
 }
 
 
 #title_content {
     text-align: right;
+    z-index: 100;
 }
 
 #login_container {
     background: white;
     border: 1px solid rgb(201, 201, 201);
     padding: 50px;
-
+    z-index: 100;
 }
 
 #label {
@@ -146,5 +169,6 @@ body, html {
     font-style: normal;
     color: rgb(51, 51, 51);
     font-size: 20px;
+    z-index: 100;
 }
 

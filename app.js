@@ -85,11 +85,10 @@ $(function() {
         scale: true,
         blend: true,
         blendModeType: 'hue',
-        glitch1TimeMin: 1,
-        glitch1TimeMax: 2,
-        glitch2TimeMin: 1,
-        glitch2TimeMax: 2,
-        zIndexStart : 5
+        glitch1TimeMin: 200,
+        glitch1TimeMax:400,
+        glitch2TimeMin: 10,
+        glitch2TimeMax: 100,
 
     });
 });
