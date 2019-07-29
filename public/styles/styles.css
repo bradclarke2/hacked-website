@@ -10,21 +10,21 @@ body,html {
 
 @font-face {
     font-family: 'Tesco_Reg';
-    src: url(public/webfonts/Tesco_W_Rg.woff);
+    src: url(../webfonts/Tesco_W_Rg.woff);
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Tesco_It';
-    src: url(public/webfonts/Tesco_W_It.woff);
+    src: url(../webfonts/Tesco_W_It.woff);
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Tesco_Bd';
-    src: url(public/webfonts/Tesco_W_Bd.woff);
+    src: url(../webfonts/Tesco_W_Bd.woff);
     font-weight: normal;
     font-style: normal;
 }
@@ -65,7 +65,7 @@ body,html {
     border-radius: 25px;
     width: 200px;
     height: 45px;
-    transition-duration: 0.15s;
+    transition-duration: 0.1s;
 }
 
 #language_selector{
@@ -88,6 +88,15 @@ body,html {
     width: auto;
     top: 27%;
     left: 20px;
+}
+
+#logo_text {
+    font-family: 'Tesco_Bd', Arial, sans-serif;
+    position: absolute;
+    left: 120px;
+    color: rgb(44,83,159);
+    font-size: 30px;
+    top: 10%;
 }
 
 #home_icon{

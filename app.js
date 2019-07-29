@@ -4,6 +4,9 @@ $(document).ready(function () {
     if (localStorage.getItem("antiHackerName") === null) {
         localStorage.setItem("antiHackerName", prompt("Before we begin, Whats your name?"))
     }
+    if (localStorage.getItem("pageStyle") === "hacked") {
+        styleSwap("public/styles/hacked.css");
+    }
     console.log("It looks like you've been hacked, Dont worry, the Hacker has left a trail\n\ncall clue1(); to begin getting your site back!\n\n- Not the Hacker... promise!");
 });
 
@@ -60,4 +63,8 @@ function trollFace() {
 function clue1() {
     console.log("HA you thought it be that easy " + localStorage.getItem("antiHackerName") + "!?, fix it yourself!\n\n-SuperHACKERZZZZZZ2K19");
     trollFace();
+}
+
+function styleSwap(sheet){
+    document.getElementById("pageStyle").setAttribute("href",sheet)
 }
