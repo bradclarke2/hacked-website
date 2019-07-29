@@ -59,6 +59,15 @@ body,html {
     transform: translate(-50%);
 }
 
+.button {
+    background: rgb(44,83,159);
+    color: white;
+    border-radius: 25px;
+    width: 200px;
+    height: 45px;
+    transition-duration: 0.15s;
+}
+
 #language_selector{
     font-family: 'Tesco_Reg', Arial, sans-serif;
     position: absolute;
@@ -113,3 +122,4 @@ body,html {
     color: rgb(51,51,51);
     font-size: 20px;
 }
+
