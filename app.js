@@ -30,10 +30,7 @@ $(function () {
 })
 
 function checkUserName() {
-    let username = document.getElementById("exampleInputEmail1");
-    if (username.value.toString() === "Steven@connect.com") {
-        console.log("Correct")
-    }
+   console.log("button clicked")
 }
 
 function trollFace() {
@@ -80,3 +77,19 @@ function init() {
     console.log("It looks like you've been hacked, Dont worry, the Hacker has left a trail\n\ncall clue1(); to begin getting your site back!\n\n- Not the Hacker... promise!");
 
 }
+
+$(function() {
+    $(".glitch-img").mgGlitch({
+        destroy: false,
+        glitch: true,
+        scale: true,
+        blend: true,
+        blendModeType: 'hue',
+        glitch1TimeMin: 1,
+        glitch1TimeMax: 2,
+        glitch2TimeMin: 1,
+        glitch2TimeMax: 2,
+        zIndexStart : 5
+
+    });
+});
