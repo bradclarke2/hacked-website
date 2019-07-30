@@ -63,7 +63,6 @@ function styleSwap(sheet) {
         document.getElementById("logo_text").style.display = "none";
         document.getElementById("home_icon").style.display = "none";
         document.getElementById("hacked_logo").style.display = "block";
-        document.getElementById("video").style.display = "block";
     }
 }
 
