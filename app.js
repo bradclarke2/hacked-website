@@ -1,10 +1,7 @@
 let buttonMoved = false;
 
 $(document).ready(function () {
-    if (localStorage.getItem("antiHackerName") === null) {
-        localStorage.setItem("antiHackerName", prompt("Before we begin, Whats your name?"))
-    }
-    console.log("It looks like you've been hacked, Dont worry, the Hacker has left a trail\n\ncall clue1(); to begin getting your site back!\n\n- Not the Hacker... promise!");
+    init();
 });
 
 $(function () {
@@ -12,7 +9,7 @@ $(function () {
         mouseover: function () {
             if (buttonMoved === false) {
                 $(this).css({
-                    left: 200 + "px"
+                    left: 300 + "px"
                 });
                 buttonMoved = true;
             } else {
@@ -33,10 +30,7 @@ $(function () {
 })
 
 function checkUserName() {
-    let username = document.getElementById("exampleInputEmail1");
-    if (username.value.toString() === "Steven@connect.com") {
-        console.log("Correct")
-    }
+    console.log("button clicked")
 }
 
 function trollFace() {
@@ -61,3 +55,40 @@ function clue1() {
     console.log("HA you thought it be that easy " + localStorage.getItem("antiHackerName") + "!?, fix it yourself!\n\n-SuperHACKERZZZZZZ2K19");
     trollFace();
 }
+
+function styleSwap(sheet) {
+    if (sheet === "hacked") {
+        document.getElementById("pageStyle").setAttribute("href", "public/styles/hacked.css");
+        document.getElementById("tesco_logo").style.display = "none";
+        document.getElementById("logo_text").style.display = "none";
+        document.getElementById("home_icon").style.display = "none";
+        document.getElementById("hacked_logo").style.display = "block";
+        document.getElementById("video").style.display = "block";
+    }
+}
+
+function init() {
+    if (localStorage.getItem("antiHackerName") === null) {
+        localStorage.setItem("antiHackerName", prompt("Before we begin, Whats your name?"))
+    }
+    if (localStorage.getItem("pageStyle") === "hacked") {
+        styleSwap("hacked");
+    }
+    console.log("It looks like you've been hacked, Dont worry, the Hacker has left a trail\n\ncall clue1(); to begin getting your site back!\n\n- Not the Hacker... promise!");
+
+}
+
+$(function () {
+    $(".glitch-img").mgGlitch({
+        destroy: false,
+        glitch: true,
+        scale: true,
+        blend: true,
+        blendModeType: 'hue',
+        glitch1TimeMin: 200,
+        glitch1TimeMax: 400,
+        glitch2TimeMin: 10,
+        glitch2TimeMax: 100,
+
+    });
+});
