@@ -32,16 +32,6 @@ body, html {
 #submitButton {
     position: relative
 }
-
-.backgroundBG {
-    position: relative;
-    margin: 0px;
-    background-color: #fff;
-    width: calc(100% - 0px);
-    height: calc(100% - 0px);
-    overflow: hidden;
-}
-
 .navbar_container {
     position: absolute;
     background: rgb(0, 83, 159);
