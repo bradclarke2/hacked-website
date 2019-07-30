@@ -30,7 +30,7 @@ $(function () {
 })
 
 function checkUserName() {
-   console.log("button clicked")
+    console.log("button clicked")
 }
 
 function trollFace() {
@@ -78,7 +78,7 @@ function init() {
 
 }
 
-$(function() {
+$(function () {
     $(".glitch-img").mgGlitch({
         destroy: false,
         glitch: true,
@@ -86,7 +86,7 @@ $(function() {
         blend: true,
         blendModeType: 'hue',
         glitch1TimeMin: 200,
-        glitch1TimeMax:400,
+        glitch1TimeMax: 400,
         glitch2TimeMin: 10,
         glitch2TimeMax: 100,
 

@@ -151,7 +151,7 @@ a:link, a:visited {
 }
 
 #title:before, #title:after {
-    content: 'Sign in to your account';
+    content: 'Sign in to your account 😈';
     position: absolute;
     top: 0;
     right: 0;
@@ -169,6 +169,28 @@ a:link, a:visited {
     left: 2px;
     text-shadow: -2px 0 rgb(31, 31, 31);
     animation: effect 2s infinite linear;
+}
+
+#title_content {
+    text-align: right;
+    z-index: 100;
+}
+
+#login_container {
+    background: rgb(24, 24, 24);
+    border: 1px solid rgb(201, 201, 201);
+    padding: 50px;
+    z-index: 100;
+    opacity: 0.5;
+}
+
+#label {
+    font-family: 'Tesco_Bd', Arial, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    color: white;
+    font-size: 20px;
+    z-index: 100;
 }
 
 @-webkit-keyframes effect {
@@ -235,28 +257,5 @@ a:link, a:visited {
     100% {
         clip: rect(17px, 9999px, 79px, 0);
     }
-}
-
-
-#title_content {
-    text-align: right;
-    z-index: 100;
-}
-
-#login_container {
-    background: rgb(24, 24, 24);
-    border: 1px solid rgb(201, 201, 201);
-    padding: 50px;
-    z-index: 100;
-    opacity: 0.5;
-}
-
-#label {
-    font-family: 'Tesco_Bd', Arial, sans-serif;
-    font-weight: normal;
-    font-style: normal;
-    color: white;
-    font-size: 20px;
-    z-index: 100;
 }
 
