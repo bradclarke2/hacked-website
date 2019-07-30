@@ -2,7 +2,6 @@ body, html {
     position: relative;
     height: 100%;
     width: 100%;
-    overflow: hidden;
     background: rgb(31, 31, 31);
     font-family: 'Tesco_Reg', Arial, sans-serif;
     font-weight: normal;
@@ -141,7 +140,6 @@ a:link, a:visited {
     top: 50px;
     right: 0;
     left: 0;
-    overflow: hidden;
     font-family: 'Tesco_Bd', Arial, sans-serif;
     font-weight: normal;
     font-style: normal;
@@ -156,7 +154,6 @@ a:link, a:visited {
     top: 0;
     right: 0;
     left: 0;
-    overflow: hidden;
 }
 
 #title:before {
