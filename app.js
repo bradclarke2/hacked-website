@@ -168,27 +168,40 @@ function uploadPlayerInfo() {
         onOpen: () => {
             Swal.stopTimer();
             Swal.showLoading();
+
+            let data = {
+                users: [
+                    {
+                        forename: localStorage.getItem("player_1"),
+                        surname: ""
+                    }, {
+                        forename: localStorage.getItem("player_2"),
+                        surname: ""
+                    }
+                ]
+            };
             let request = new XMLHttpRequest();
-            request.open("GET", "URL/hello", false);
-            request.send();
+            request.open("POST", "URL:8080/code-group", false);
+            request.setRequestHeader("Content-type", "application/json");
+            request.send(JSON.stringify(data));
             //serverResponse = request.status + " " + request.statusText;
             serverResponse = request.responseText;
             //localStorage.setItem("serverResponse", request.responseText);
             Swal.resumeTimer();
         },
         onClose: () => {
-            uploadSuccess();
+            uploadSuccess(serverResponse);
         }
     })
 }
 
-function uploadSuccess() {
+function uploadSuccess(response) {
     Swal.fire({
         position: 'top-end',
         type: 'success',
         title: 'Success',
-        text: serverResponse,
+        text: response,
         showConfirmButton: false,
-        timer: 1500
+        timer: 2500
     })
 }
