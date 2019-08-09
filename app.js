@@ -119,18 +119,21 @@ function intro () {
             text: "What is Player 1's first name?"
         },
         {
+            animation: false,
             input: 'text',
             type: 'question',
             title: 'Thanks',
             text: "Now, what is Player 2's first name?"
         },
         {
+            animation: false,
             input: 'text',
             type: 'question',
             title: 'Team Name',
             text: "Now, what is your cool team name?"
         },
         {
+            animation: false,
             type:'warning',
             title: 'Cookies!',
             text: "Don't clear any of your cookies or local storage during the game!",
@@ -138,17 +141,6 @@ function intro () {
         }
     ]).then((result) => {
         if (result.value) {
-            Swal.fire({
-                type: 'success',
-                title: 'All done!',
-                html:
-                    'Thanks ' +
-                    result.value[0].capitalize() +
-                    ' & ' +
-                    result.value[1].capitalize() +
-                    ' your settings have been saved.',
-                confirmButtonText: 'Start!'
-            });
             localStorage.setItem("player_1", result.value[0].capitalize());
             localStorage.setItem("player_2", result.value[1].capitalize());
             localStorage.setItem("team_name", result.value[2].capitalize());
@@ -161,6 +153,7 @@ function intro () {
 
 function uploadPlayerInfo() {
     Swal.fire({
+        toast: true,
         position: 'top-end',
         title: 'Contacting Server',
         showConfirmButton: false,
@@ -169,23 +162,23 @@ function uploadPlayerInfo() {
             Swal.stopTimer();
             Swal.showLoading();
 
-            let data = {
-                users: [
-                    {
-                        forename: localStorage.getItem("player_1"),
-                        surname: ""
-                    }, {
-                        forename: localStorage.getItem("player_2"),
-                        surname: ""
-                    }
-                ]
-            };
-            let request = new XMLHttpRequest();
-            request.open("POST", "URL:8080/code-group", false);
-            request.setRequestHeader("Content-type", "application/json");
-            request.send(JSON.stringify(data));
-            //serverResponse = request.status + " " + request.statusText;
-            serverResponse = request.responseText;
+            // let data = {
+            //     users: [
+            //         {
+            //             forename: localStorage.getItem("player_1"),
+            //             surname: ""
+            //         }, {
+            //             forename: localStorage.getItem("player_2"),
+            //             surname: ""
+            //         }
+            //     ]
+            // };
+            // let request = new XMLHttpRequest();
+            // request.open("POST", "URL:8080/code-group", false);
+            // request.setRequestHeader("Content-type", "application/json");
+            // request.send(JSON.stringify(data));
+            // //serverResponse = request.status + " " + request.statusText;
+            // serverResponse = request.responseText;
             //localStorage.setItem("serverResponse", request.responseText);
             Swal.resumeTimer();
         },
@@ -197,11 +190,28 @@ function uploadPlayerInfo() {
 
 function uploadSuccess(response) {
     Swal.fire({
+        toast: true,
         position: 'top-end',
         type: 'success',
         title: 'Success',
-        text: response,
+        text: 'Team settings saved!',
         showConfirmButton: false,
-        timer: 2500
+        timer: 3000
+    })
+}
+
+function achievementUnlocked(reason) {
+    Swal.fire({
+        animation: false,
+        toast: true,
+        position: 'top-end',
+        title: 'Achievement Unlocked!',
+        imageUrl: 'public/images/achievement.png',
+        text: reason,
+        showConfirmButton: false,
+        timer: 3000,
+        customClass: {
+            popup: 'animated bounceIn'
+        },
     })
 }
