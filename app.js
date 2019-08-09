@@ -1,7 +1,11 @@
 let buttonMoved = false;
+let serverResponse = "";
 
 $(document).ready(function () {
-    init();
+    // init();
+    intro();
+
+
 });
 
 $(function () {
@@ -27,11 +31,15 @@ $(function () {
         console.log("i have been clicked")
         //TODO add some complicated validation check here
     });
-})
+});
 
 function checkUserName() {
     console.log("button clicked")
 }
+
+String.prototype.capitalize = function() {
+    return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+};
 
 function trollFace() {
     console.log("░░░░▄▄▄▄▀▀▀▀▀▀▀▀▄▄▄▄▄▄\n" +
@@ -68,7 +76,8 @@ function styleSwap(sheet) {
 
 function init() {
     if (localStorage.getItem("antiHackerName") === null) {
-        localStorage.setItem("antiHackerName", prompt("Before we begin, Whats your name?"))
+       // localStorage.setItem("antiHackerName", prompt("Before we begin, Whats your name?"))
+        intro();
     }
     if (localStorage.getItem("pageStyle") === "hacked") {
         styleSwap("hacked");
@@ -91,3 +100,95 @@ $(function () {
 
     });
 });
+
+function intro () {
+
+    let player_1 = "";
+    let player_2 = "";
+
+    Swal.mixin({
+        confirmButtonText: 'Next &rarr;',
+        allowOutsideClick: false,
+        showCancelButton: false,
+        progressSteps: ['1', '2', '3', '4']
+    }).queue([
+        {
+            input: 'text',
+            type: 'question',
+            title: 'Before we start...',
+            text: "What is Player 1's first name?"
+        },
+        {
+            input: 'text',
+            type: 'question',
+            title: 'Thanks',
+            text: "Now, what is Player 2's first name?"
+        },
+        {
+            input: 'text',
+            type: 'question',
+            title: 'Team Name',
+            text: "Now, what is your cool team name?"
+        },
+        {
+            type:'warning',
+            title: 'Cookies!',
+            text: "Don't clear any of your cookies or local storage during the game!",
+            confirmButtonText: 'OK I promise'
+        }
+    ]).then((result) => {
+        if (result.value) {
+            Swal.fire({
+                type: 'success',
+                title: 'All done!',
+                html:
+                    'Thanks ' +
+                    result.value[0].capitalize() +
+                    ' & ' +
+                    result.value[1].capitalize() +
+                    ' your settings have been saved.',
+                confirmButtonText: 'Start!'
+            });
+            localStorage.setItem("player_1", result.value[0].capitalize());
+            localStorage.setItem("player_2", result.value[1].capitalize());
+            localStorage.setItem("team_name", result.value[2].capitalize());
+        }
+        uploadPlayerInfo();
+    })
+
+
+}
+
+function uploadPlayerInfo() {
+    Swal.fire({
+        position: 'top-end',
+        title: 'Contacting Server',
+        showConfirmButton: false,
+        timer: 1000,
+        onOpen: () => {
+            Swal.stopTimer();
+            Swal.showLoading();
+            let request = new XMLHttpRequest();
+            request.open("GET", "URL/hello", false);
+            request.send();
+            //serverResponse = request.status + " " + request.statusText;
+            serverResponse = request.responseText;
+            //localStorage.setItem("serverResponse", request.responseText);
+            Swal.resumeTimer();
+        },
+        onClose: () => {
+            uploadSuccess();
+        }
+    })
+}
+
+function uploadSuccess() {
+    Swal.fire({
+        position: 'top-end',
+        type: 'success',
+        title: 'Success',
+        text: serverResponse,
+        showConfirmButton: false,
+        timer: 1500
+    })
+}

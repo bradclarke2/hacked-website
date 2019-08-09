@@ -31,18 +31,18 @@
 </nav>
 
 
-<div class="information_text_container">
-    <div id="language_selector">Select Language <a id="chevron">&raquo;</a></div>
+<section class="information_text_container">
+    <section id="language_selector">Select Language <a id="chevron">&raquo;</a></section>
     <br><br>
     <a id="title">Sign in to your account 🙂</a><br><br>
     <a>The Toolkit provides you and your colleagues with everything you need to work with Tesco, in one
         place.</a><br><br>
-    <div id="title_content">
+    <section id="title_content">
         <a>New to the Toolkit?</a><a href="#"> Request an account</a><br><br>
-    </div>
-    <div id="login_container">
+    </section>
+    <section id="login_container">
         <form>
-            <div class="form-group">
+            <section class="form-group">
                 <label id="label" for="exampleInputEmail1">Email address</label>
                 <input
                         type="email"
@@ -55,8 +55,8 @@
                 >We'll never share your email with anyone else.🤣
                 </small
                 >
-            </div>
-            <div class="form-group">
+            </section>
+            <section class="form-group">
                 <label id="label" for="exampleInputPassword1">Password</label>
                 <input
                         type="password"
@@ -64,23 +64,14 @@
                         id="exampleInputPassword1"
                         placeholder="Password"
                 />
-            </div>
+            </section>
             <a href="#">I've forgotten my password ></a><br><br>
             <button id="submitButton" type="button" class="button" onclick="checkUserName()">
                 Sign In
             </button>
         </form>
-    </div>
-</div>
-
-<div class="container-fluid h-100">
-    <div>
-        <img class="img-fluid" src="public/images/coollogo_com-272571751.gif"/>
-    </div>
-    <div class="row justify-content-center align-items-center h-100">
-
-    </div>
-</div>
+    </section>
+</section>
 </body>
 
 <script src="public/js/jquery-3.4.1.js"></script>
@@ -100,5 +91,8 @@
         crossorigin="anonymous"
 ></script>
 <script src="public/js/mgGlitch.min.js"></script>
+<!-- Notification library -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 <script src="app.js"></script>
 </html>

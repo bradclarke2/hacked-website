@@ -188,6 +188,7 @@ a:link, a:visited {
     color: white;
     font-size: 20px;
     z-index: 100;
+    border: 10,10,10,10;
 }
 
 @-webkit-keyframes effect {
