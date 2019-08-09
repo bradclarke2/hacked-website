@@ -101,49 +101,88 @@ $(function () {
     });
 });
 
-function intro () {
+function intro() {
 
     let player_1 = "";
     let player_2 = "";
 
     Swal.mixin({
         confirmButtonText: 'Next &rarr;',
+        allowEscapeKey: false,
         allowOutsideClick: false,
         showCancelButton: false,
-        progressSteps: ['1', '2', '3', '4']
+        progressSteps: ['1', '2', '3', '4', '5', '!!!']
     }).queue([
+        {
+            type: 'info',
+            title: 'Before we start...',
+            text: "There is a few things we need to get set up..."
+        },
         {
             input: 'text',
             type: 'question',
-            title: 'Before we start...',
-            text: "What is Player 1's first name?"
+            title: 'Player 1 Name',
+            inputPlaceholder: 'Player 1 Name',
+            text: "What is Player 1's first name?",
+            inputValidator: (value) => {
+                if (!value) {
+                    return 'You need to enter a name!'
+                }
+            }
         },
         {
             animation: false,
             input: 'text',
             type: 'question',
-            title: 'Thanks',
-            text: "Now, what is Player 2's first name?"
+            title: 'Player 2 Name',
+            inputPlaceholder: 'Player 2 Name',
+            text: "Now, what is Player 2's first name?",
+            inputValidator: (value) => {
+                if (!value) {
+                    return 'You need to enter a name!'
+                }
+            }
         },
         {
             animation: false,
             input: 'text',
             type: 'question',
             title: 'Team Name',
-            text: "Now, what is your cool team name?"
+            inputPlaceholder: 'Team Name',
+            text: "Now, what is your cool team name?",
+            inputValidator: (value) => {
+                if (!value) {
+                    return "Oh come on, i'm sure you can think of one!"
+                }
+            }
         },
         {
             animation: false,
-            type:'warning',
+            type: 'warning',
             title: 'Cookies!',
             text: "Don't clear any of your cookies or local storage during the game!",
-            confirmButtonText: 'OK I promise'
+            confirmButtonText: 'OK'
+        },
+        {
+            animation: false,
+            type: 'error',
+            title: 'SERIOUSLY THO!',
+            text: "Don't do it, it will break the game, we didnt have long to make this!",
+            input: 'checkbox',
+            inputValue: 0,
+            inputPlaceholder:
+                'I Promise',
+            confirmButtonText:
+                'Continue <i class="fa fa-arrow-right></i>',
+            inputValidator: (result) => {
+                return !result && 'You need to promise!'
+            }
         }
     ]).then((result) => {
         if (result.value) {
-            localStorage.setItem("player_1", result.value[0].capitalize());
-            localStorage.setItem("player_2", result.value[1].capitalize());
-            localStorage.setItem("team_name", result.value[2].capitalize());
+            localStorage.setItem("player_1", result.value[1].capitalize());
+            localStorage.setItem("player_2", result.value[2].capitalize());
+            localStorage.setItem("team_name", result.value[3].capitalize());
         }
         uploadPlayerInfo();
     })
@@ -183,20 +222,20 @@ function uploadPlayerInfo() {
             Swal.resumeTimer();
         },
         onClose: () => {
-            uploadSuccess(serverResponse);
+            uploadSuccess(localStorage.getItem('team_name'));
         }
     })
 }
 
-function uploadSuccess(response) {
+function uploadSuccess(teamname) {
     Swal.fire({
         toast: true,
-        position: 'top-end',
         type: 'success',
+        position: 'top-end',
         title: 'Success',
-        text: 'Team settings saved!',
+        text: 'Team "' + teamname + '" created',
         showConfirmButton: false,
-        timer: 3000
+        timer: 4000
     })
 }
 
