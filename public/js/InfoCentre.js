@@ -1,5 +1,13 @@
 class InfoCentre {
 
+    dialog(type, title, text) {
+        Swal.fire({
+            type: type,
+            title: title,
+            text: text,
+        })
+    }
+
     toast(type, title, text, timer) {
         Swal.fire({
             toast: true,
@@ -16,7 +24,6 @@ class InfoCentre {
 
         Swal.fire({
             animation: false,
-            height: 100,
             toast: true,
             position: 'top-end',
             title: title,
@@ -125,6 +132,7 @@ class InfoCentre {
                 Swal.showLoading();
 
                 let data = {
+                    teamName: localStorage.getItem("team_name"),
                     users: [
                         {
                             forename: localStorage.getItem("player_1"),
@@ -135,12 +143,24 @@ class InfoCentre {
                         }
                     ]
                 };
-                RequestCentre.jsonRequest('POST','#######',data);
-                Swal.resumeTimer();
+                try {
+                    requestCentre.jsonRequest('POST', '/code-group', data);
+                    Swal.resumeTimer();
+                } catch (err) {
+                    infoCentre.toast("error", "Error!", "Cannot Contact Server", 20000);
+                }
             },
             onClose: () => {
 
-                infoCentre.toast('success','Success','Team ' + localStorage.getItem('team_name') + ' created', 4000 );
+                if (serverResponseStatusCode === 200) {
+                    let response = JSON.parse(serverResponse);
+                    localStorage.setItem("team_id", response.id);
+                    infoCentre.toast('success', 'Success', 'Team ' + localStorage.getItem('team_name') + ' created', 4000);
+                } else {
+                    let response = JSON.parse(serverResponse);
+                    infoCentre.dialog("error", "Something went wrong...", "Call over Brad or Ross.. Error: " + localStorage.getItem("serverResponseStatusCode") + " : " + response.message);
+                }
+
             }
         })
     }

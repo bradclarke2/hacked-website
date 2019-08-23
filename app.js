@@ -1,5 +1,8 @@
 let buttonMoved = false;
 let serverResponse = "";
+let serverResponseStatusCode = "";
+let serverResponceStatusText = "";
+
 let infoCentre = new InfoCentre();
 let requestCentre = new RequestCentre();
 
@@ -34,7 +37,8 @@ $(function () {
 });
 
 function checkUserName() {
-    console.log("button clicked")
+    console.log("button clicked");
+    infoCentre.achievementUnlock("Achievement Unlocked", "You fixed the button!",4000);
 }
 
 String.prototype.capitalize = function() {
@@ -81,7 +85,6 @@ function init() {
        intro();
     }
     console.log("It looks like you've been hacked, Dont worry, the Hacker has left a trail\n\ncall clue1(); to begin getting your site back!\n\n- Not the Hacker... promise!");
-
 }
 
 $(function () {
@@ -105,4 +108,8 @@ function intro() {
 
 function achievementUnlock(title, text, timer) {
     infoCentre.achievementUnlock(title, text, timer);
+}
+
+function testhttp() {
+    requestCentre.httpRequest("get","/hello");
 }
