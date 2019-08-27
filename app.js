@@ -8,8 +8,8 @@ let requestCentre = new RequestCentre();
 
 $(document).ready(function () {
     init();
-
 });
+
 
 $(function () {
     $("#submitButton").on({
@@ -37,8 +37,36 @@ $(function () {
 });
 
 function checkUserName() {
-    console.log("button clicked");
-    infoCentre.achievementUnlock("Achievement Unlocked", "You fixed the button!",4000);
+
+    if (document.getElementById("exampleInputEmail1").value === "connectadmin@tesco.com" && checkPassword(document.getElementById("exampleInputPassword1").value) === true) {
+        infoCentre.achievementUnlock("Achievement Unlocked", "You logged in!",4000);
+        localStorage.setItem("loggedIn", "true");
+    } else {
+        infoCentre.toast("error","Error","Incorrect Login Credentials",2000)
+    }
+
+    buttonFixed();
+
+}
+
+function checkPassword(password = "empty") {
+
+    let data = {
+        username: "does not matter",
+        password : password
+    };
+    requestCentre.jsonRequest("Post", "http://51.143.154.149:8080/code-group/5d64ffb094fc6a023fd700a6/login", data);
+
+    if (localStorage.getItem("serverResponse") === "success") {
+        return true
+    }
+}
+
+function buttonFixed() {
+     if (localStorage.getItem("button") !== "fixed") {
+         localStorage.setItem("button", "fixed");
+         achievementUnlock("Achievement Unlocked!", "You fixed the rogue button", 4000);
+     }
 }
 
 String.prototype.capitalize = function() {
@@ -82,7 +110,7 @@ function init() {
     if (localStorage.getItem("pageStyle") === "hacked") {
         styleSwap("hacked");
     } else {
-       intro();
+       //intro(); //TODO remove this befor elaunch
     }
     console.log("It looks like you've been hacked, Dont worry, the Hacker has left a trail\n\ncall clue1(); to begin getting your site back!\n\n- Not the Hacker... promise!");
 }
@@ -112,4 +140,18 @@ function achievementUnlock(title, text, timer) {
 
 function testhttp() {
     requestCentre.httpRequest("get","/hello");
+}
+
+function forgotPassword() {
+    infoCentre.toast("info","Hint","I wonder if any requests are being made when logging in? 🤔", 3000);
+}
+
+function forgotEmail() {
+    infoCentre.toast("info", "Hint", "I wonder if there is any email validation in the code.. 🤔")
+}
+
+function loggedIn() {
+    if (localStorage.getItem("loggedIn") !== "true") {
+        window.location.replace("index.html")
+    }
 }
