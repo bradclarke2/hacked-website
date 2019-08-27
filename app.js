@@ -1,6 +1,6 @@
 let buttonMoved = false;
 let serverResponse = "";
-let serverResponseStatusCode = "";
+let serverResponseStatusCode = 0;
 let serverResponceStatusText = "";
 
 let infoCentre = new InfoCentre();
@@ -41,6 +41,7 @@ function checkUserName() {
     if (document.getElementById("exampleInputEmail1").value === "connectadmin@tesco.com" && checkPassword(document.getElementById("exampleInputPassword1").value) === true) {
         infoCentre.achievementUnlock("Achievement Unlocked", "You logged in!",4000);
         localStorage.setItem("loggedIn", "true");
+        window.location.replace("q1.html");
     } else {
         infoCentre.toast("error","Error","Incorrect Login Credentials",2000)
     }
@@ -55,9 +56,8 @@ function checkPassword(password = "empty") {
         username: "does not matter",
         password : password
     };
-    requestCentre.jsonRequest("Post", "http://51.143.154.149:8080/code-group/5d64ffb094fc6a023fd700a6/login", data);
-
-    if (localStorage.getItem("serverResponse") === "success") {
+     //TODO UPDATE SERVER CALL WITH REAL TEAM
+    if (requestCentre.jsonRequest("Post", "http://51.143.154.149:8080/code-group/5d64ffb094fc6a023fd700a6/login", data) === 200) {
         return true
     }
 }
@@ -147,11 +147,59 @@ function forgotPassword() {
 }
 
 function forgotEmail() {
-    infoCentre.toast("info", "Hint", "I wonder if there is any email validation in the code.. 🤔")
+    infoCentre.toast("info", "Hint", "I wonder if there is any email validation in the code.. 🤔", 3000)
 }
 
 function loggedIn() {
     if (localStorage.getItem("loggedIn") !== "true") {
         window.location.replace("index.html")
+    }
+}
+
+function q1check() {
+    if (localStorage.getItem("q1") !== "complete") {
+        window.location.replace("q1.html")
+    }
+}
+
+function q2check() {
+    if (localStorage.getItem("q2") !== "complete") {
+        window.location.replace("q2.html")
+    }
+}
+
+
+function checkQ1Answer(answer) {
+    //TODO UPDATE server call
+
+ if (requestCentre.httpRequest("Put", "http://51.143.154.149:8080/code-group/5d64ffb094fc6a023fd700a6/answers/" + answer.capitalize()) === 200) {
+     infoCentre.achievementUnlock("Achievement Unlocked", "That was an ugly baby!", 3000);
+     localStorage.setItem("q1","complete");
+     window.location.replace("q2.html");
+ } else {
+     infoCentre.toast("error", "Error", "That's not the image", 3000);
+ }
+
+}
+
+function checkQ2Answer(answer) {
+    //TODO UPDATE SERVER CALL
+    if (requestCentre.httpRequest("Put", "http://51.143.154.149:8080/code-group/5d64ffb094fc6a023fd700a6/answers/" + answer) === 200) {
+        infoCentre.achievementUnlock("Achievement Unlocked", "Well that ain't big!", 3000);
+        localStorage.setItem("q2","complete");
+        window.location.replace("q3.html");
+    } else {
+        infoCentre.toast("error", "Error", "That's not the correct size", 3000);
+    }
+}
+
+function checkQ3Answer(answer) {
+    //TODO UPDATE SERVER CALL
+    if (requestCentre.httpRequest("Put", "http://51.143.154.149:8080/code-group/5d64ffb094fc6a023fd700a6/answers/" + answer.capitalize()) === 200) {
+        infoCentre.achievementUnlock("Achievement Unlocked", "Almost...", 3000);
+        localStorage.setItem("q3","complete");
+        window.location.replace("complete.html");
+    } else {
+        infoCentre.toast("error", "Error", "That's not correct", 3000);
     }
 }

@@ -12,8 +12,7 @@
 />
 <link id="pageStyle" rel="stylesheet" href="public/styles/styles.css"/>
 <link rel="stylesheet" href="public/styles/animate.css"/>
-<body onload="loggedIn()"> <!--DO NOT CHANGE THIS LINE!-->
-<body>
+<body onload="q1check()"> <!--DO NOT CHANGE THIS LINE!-->
 
 <div class="backgroundBG">
     <div class="glitch-img" style="background-image: url('public/images/hacked.jpg')"></div>
@@ -27,7 +26,32 @@
             id="logo_text">Connect</a>
     </div>
 </nav>
+
+
+<section class="information_text_container">
+
+    <a id="title">Not so Fast!!!</a><br><br>
+    <section id="login_container">
+        <a>In megabytes, how much storage did the first production IBM hard disks hold?</a><br><br>
+        <img src="public/images/hdd.jpg" style="height: 200px" style="width: 200px">
+        <form>
+            <section class="form-group"><br><br>
+                <label id="label" for="q2answer">Answer</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="q2answer"
+                        placeholder="Enter answer here"
+                />
+            </section>
+            <button id="Button" type="button" class="button" onclick="checkQ2Answer(document.getElementById('q2answer').value)">
+                Submit
+            </button>
+        </form>
+    </section>
+</section>
 </body>
+
 <script src="public/js/jquery-3.4.1.js"></script>
 <script
         src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
