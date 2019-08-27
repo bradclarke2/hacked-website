@@ -172,6 +172,12 @@ function q2check() {
     }
 }
 
+function q3check() {
+    if (localStorage.getItem("q3") !== "complete") {
+        window.location.replace("q3.html")
+    }
+}
+
 
 function checkQ1Answer(answer) {
     //TODO UPDATE server call
