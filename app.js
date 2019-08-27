@@ -5,6 +5,7 @@ let serverResponceStatusText = "";
 
 let infoCentre = new InfoCentre();
 let requestCentre = new RequestCentre();
+let scoreCentre = new ScoreCentre();
 
 $(document).ready(function () {
     init();
@@ -39,7 +40,9 @@ $(function () {
 function checkUserName() {
 
     if (document.getElementById("exampleInputEmail1").value === "connectadmin@tesco.com" && checkPassword(document.getElementById("exampleInputPassword1").value) === true) {
-        infoCentre.achievementUnlock("Achievement Unlocked", "You logged in!", 4000);
+
+        scoreCentre.scoreForAnswer(document.getElementById("exampleInputEmail1").value);
+        infoCentre.achievementUnlock("Achievement Unlocked", "You logged in!",4000);
         localStorage.setItem("loggedIn", "true");
         window.location.replace("q1.html");
     } else {
@@ -63,10 +66,12 @@ function checkPassword(password = "empty") {
 }
 
 function buttonFixed() {
-    if (localStorage.getItem("button") !== "fixed") {
-        localStorage.setItem("button", "fixed");
-        achievementUnlock("Achievement Unlocked!", "You fixed the rogue button", 4000);
-    }
+     if (localStorage.getItem("button") !== "fixed") {
+         localStorage.setItem("button", "fixed");
+         scoreCentre.scoreForRogueButton();
+         achievementUnlock("Achievement Unlocked!", "You fixed the rogue button", 4000);
+     }
+
 }
 
 String.prototype.capitalize = function () {
@@ -113,6 +118,7 @@ function init() {
         styleSwap("hacked");
     } else {
         intro(); //TODO remove this before launch
+
     }
     console.log("It looks like you've been hacked, Dont worry, the Hacker has left a trail\n\ncall clue1(); to begin getting your site back!\n\n- Not the Hacker... promise!");
 }
