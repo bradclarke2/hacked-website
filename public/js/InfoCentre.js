@@ -144,7 +144,7 @@ class InfoCentre {
                     ]
                 };
                 try {
-                    requestCentre.jsonRequest('POST', '/code-group', data);
+                    requestCentre.jsonRequest('POST', 'http://51.143.154.149:8080/code-group/', data);
                     Swal.resumeTimer();
                 } catch (err) {
                     infoCentre.toast("error", "Error!", "Cannot Contact Server", 20000);
@@ -156,6 +156,8 @@ class InfoCentre {
                     let response = JSON.parse(serverResponse);
                     localStorage.setItem("team_id", response.id);
                     infoCentre.toast('success', 'Success', 'Team ' + localStorage.getItem('team_name') + ' created', 4000);
+                    localStorage.setItem('pageStyle','hacked');
+                    window.location.reload();
                 } else {
                     let response = JSON.parse(serverResponse);
                     infoCentre.dialog("error", "Something went wrong...", "Call over Brad or Ross.. Error: " + localStorage.getItem("serverResponseStatusCode") + " : " + response.message);

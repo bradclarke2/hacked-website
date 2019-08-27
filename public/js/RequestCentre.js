@@ -12,11 +12,13 @@ class RequestCentre {
         serverResponceStatusText = request.statusText;
         serverResponse = request.responseText;
         localStorage.setItem("serverResponse", request.responseText)
+        return request.status;
     }
 
    httpRequest(type, url) {
        let request = new XMLHttpRequest();
         request.open(type, url, false);
         request.send();
+        return request.status;
     }
 }
